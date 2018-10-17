@@ -77,13 +77,13 @@ public final class DestinyBuilder {
 	public static void setupTemples(Config config, Map<Temple, Cell> templeToCellMap,
 			Map<Ground, Cell> groundToCellMap) {
 		templeToCellMap.put(Temple.TEMPLE_BODY, groundToCellMap.get(
-				getBodyTempleGround(config.getCheckedDoubleMonthValidMonth(), config.getBornTimeGround().getGround())));
+				getBodyTempleGround(config.getDoubleMonthLogicalMonth(), config.getBornTimeGround().getGround())));
 
 		// 安命
 		switch (config.getConfigType()) {
 		case SKY:
 			templeToCellMap.put(Temple.TEMPLE_DESTINY,
-					groundToCellMap.get(getDestinyTempleGround(config.getCheckedDoubleMonthValidMonth(),
+					groundToCellMap.get(getDestinyTempleGround(config.getDoubleMonthLogicalMonth(),
 							config.getBornTimeGround().getGround())));
 			break;
 		case GROUND:
@@ -91,7 +91,7 @@ public final class DestinyBuilder {
 			break;
 		case HUMAN:
 			templeToCellMap.put(Temple.TEMPLE_DESTINY,
-					groundToCellMap.get(getDestinyTempleGround(config.getCheckedDoubleMonthValidMonth(),
+					groundToCellMap.get(getDestinyTempleGround(config.getDoubleMonthLogicalMonth(),
 							config.getBornTimeGround().getGround()).shift(2)));
 			break;
 		}
@@ -395,7 +395,7 @@ public final class DestinyBuilder {
 	 */
 	public static void setupSonDou(Destiny destiny) {
 		Ground bornTimeGround = destiny.getConfig().getBornTimeGround().getGround();
-		int bornMonth = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+		int bornMonth = destiny.getConfig().getDoubleMonthLogicalMonth();
 		destiny.setSonDou(bornTimeGround.shift(-bornMonth + 1));
 	}
 

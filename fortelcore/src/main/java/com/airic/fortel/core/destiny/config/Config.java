@@ -42,6 +42,18 @@ public final class Config implements Cloneable, Serializable {
 
 	/** The year ground. */
 	private Ground yearGround;
+	
+	/** The month sky. */
+	private Sky monthSky;
+
+	/** The month ground. */
+	private Ground monthGround;
+	
+	/** The day sky. */
+	private Sky daySky;
+
+	/** The day ground. */
+	private Ground dayGround;
 
 	/** The born year. */
 	private int bornYear;
@@ -152,6 +164,28 @@ public final class Config implements Cloneable, Serializable {
 	 *            the born time ground
 	 */
 	public Config(ConfigType configType, Sex sex, int bornYear, int bornMonth, int bornDay, boolean isDoubleMonth,
+			Sky yearSky, Ground yearGround,
+			Sky monthSky, Ground monthGround,
+			Sky daySky, Ground dayGround,
+			GroundTime bornTimeGround) {
+		super();
+		this.configType = configType;
+		this.sex = sex;
+		this.bornYear = bornYear;
+		this.bornMonth = bornMonth;
+		this.bornDay = bornDay;
+		this.bornTimeGround = bornTimeGround;
+		this.isDoubleMonth = isDoubleMonth;
+		
+		this.yearSky = yearSky;
+		this.yearGround = yearGround;
+		this.monthSky = monthSky;
+		this.monthGround = monthGround;
+		this.daySky = daySky;
+		this.dayGround = dayGround;
+	}
+	
+	public Config(ConfigType configType, Sex sex, int bornYear, int bornMonth, int bornDay, boolean isDoubleMonth,
 			GroundTime bornTimeGround) {
 		super();
 		this.configType = configType;
@@ -240,6 +274,11 @@ public final class Config implements Cloneable, Serializable {
 		return yearSky;
 	}
 
+
+	public void setYearSky(Sky yearSky) {
+		this.yearSky = yearSky;
+	}
+	
 	/**
 	 * Gets the year ground.
 	 *
@@ -247,6 +286,42 @@ public final class Config implements Cloneable, Serializable {
 	 */
 	public Ground getYearGround() {
 		return yearGround;
+	}
+
+	public void setYearGround(Ground yearGround) {
+		this.yearGround = yearGround;
+	}
+	
+	public Sky getMonthSky() {
+		return monthSky;
+	}
+
+	public void setMonthSky(Sky monthSky) {
+		this.monthSky = monthSky;
+	}
+
+	public Ground getMonthGround() {
+		return monthGround;
+	}
+
+	public void setMonthGround(Ground monthGround) {
+		this.monthGround = monthGround;
+	}
+
+	public Sky getDaySky() {
+		return daySky;
+	}
+
+	public void setDaySky(Sky daySky) {
+		this.daySky = daySky;
+	}
+
+	public Ground getDayGround() {
+		return dayGround;
+	}
+
+	public void setDayGround(Ground dayGround) {
+		this.dayGround = dayGround;
 	}
 
 	/**
@@ -263,14 +338,16 @@ public final class Config implements Cloneable, Serializable {
 	 *
 	 * @return the checked double month valid month
 	 */
-	public int getCheckedDoubleMonthValidMonth() {
-		return DoubleMonth.getYearDoubleMonth(getBornYear()).map(doubleMonth -> {
-			return this.bornMonth == doubleMonth.intValue() && this.isDoubleMonth && this.getBornDay() > 15;
-		}).map(isDoubleMonth -> {
-			return this.bornMonth + (isDoubleMonth ? 1 : 0);
-		}).orElse(bornMonth);
+	public int getDoubleMonthLogicalMonth() {
+		
+		if (this.isDoubleMonth && this.getBornDay() > 15) {
+			return this.bornMonth + 1;
+		} else {
+			return this.bornMonth;
+		}
+		
 	}
-
+	
 	/**
 	 * Sets the born month.
 	 *
@@ -454,6 +531,9 @@ public final class Config implements Cloneable, Serializable {
 	@Override
 	public Config clone() {
 		return new Config(this.configType, this.sex, this.bornYear, this.bornMonth, this.bornDay, this.isDoubleMonth,
+				this.yearSky, this.yearGround,
+				this.monthSky, this.monthGround,
+				this.daySky, this.dayGround,
 				this.bornTimeGround);
 	}
 
@@ -709,11 +789,6 @@ public final class Config implements Cloneable, Serializable {
 				new Lunar(config.getBornYear(), config.getBornMonth(), config.getBornDay(), config.isDoubleMonth()));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -723,16 +798,17 @@ public final class Config implements Cloneable, Serializable {
 		result = prime * result + ((bornTimeGround == null) ? 0 : bornTimeGround.hashCode());
 		result = prime * result + bornYear;
 		result = prime * result + ((configType == null) ? 0 : configType.hashCode());
+		result = prime * result + ((dayGround == null) ? 0 : dayGround.hashCode());
+		result = prime * result + ((daySky == null) ? 0 : daySky.hashCode());
 		result = prime * result + (isDoubleMonth ? 1231 : 1237);
+		result = prime * result + ((monthGround == null) ? 0 : monthGround.hashCode());
+		result = prime * result + ((monthSky == null) ? 0 : monthSky.hashCode());
 		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
+		result = prime * result + ((yearGround == null) ? 0 : yearGround.hashCode());
+		result = prime * result + ((yearSky == null) ? 0 : yearSky.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -752,9 +828,21 @@ public final class Config implements Cloneable, Serializable {
 			return false;
 		if (configType != other.configType)
 			return false;
+		if (dayGround != other.dayGround)
+			return false;
+		if (daySky != other.daySky)
+			return false;
 		if (isDoubleMonth != other.isDoubleMonth)
 			return false;
+		if (monthGround != other.monthGround)
+			return false;
+		if (monthSky != other.monthSky)
+			return false;
 		if (sex != other.sex)
+			return false;
+		if (yearGround != other.yearGround)
+			return false;
+		if (yearSky != other.yearSky)
 			return false;
 		return true;
 	}

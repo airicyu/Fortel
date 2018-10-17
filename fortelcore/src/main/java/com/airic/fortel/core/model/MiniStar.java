@@ -282,7 +282,7 @@ public enum MiniStar implements Star {
 	/** The mini star sky punishment. */
 	MINI_STAR_SKY_PUNISHMENT(Const.MINI_STAR_SKY_PUNISHMENT) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(Const.GROUND_9).get().shift(month - 1);
 		}
 	},
@@ -290,7 +290,7 @@ public enum MiniStar implements Star {
 	/** The mini star sky romantic. */
 	MINI_STAR_SKY_ROMANTIC(Const.MINI_STAR_SKY_ROMANTIC) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(Const.GROUND_1).get().shift(month - 1);
 		}
 	},
@@ -298,7 +298,7 @@ public enum MiniStar implements Star {
 	/** The mini star sky witch. */
 	MINI_STAR_SKY_WITCH(Const.MINI_STAR_SKY_WITCH) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			// return Ground.getByName(new String[] { Const.GROUND_5,
 			// Const.GROUND_8, Const.GROUND_11, Const.GROUND_2, Const.GROUND_5,
 			// Const.GROUND_8, Const.GROUND_11, Const.GROUND_2, Const.GROUND_5,
@@ -312,7 +312,7 @@ public enum MiniStar implements Star {
 	/** The mini star sky moon. */
 	MINI_STAR_SKY_MOON(Const.MINI_STAR_SKY_MOON) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(new String[] { Const.GROUND_10, Const.GROUND_5, Const.GROUND_4,
 					Const.GROUND_2, Const.GROUND_7, Const.GROUND_3, Const.GROUND_11, Const.GROUND_7, Const.GROUND_2,
 					Const.GROUND_6, Const.GROUND_10, Const.GROUND_2 }[month - 1]).get();
@@ -322,7 +322,7 @@ public enum MiniStar implements Star {
 	/** The mini star ghost. */
 	MINI_STAR_GHOST(Const.MINI_STAR_GHOST) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(new String[] { Const.GROUND_2, Const.GROUND_0, Const.GROUND_10,
 					Const.GROUND_8, Const.GROUND_6, Const.GROUND_4, Const.GROUND_2, Const.GROUND_0, Const.GROUND_10,
 					Const.GROUND_8, Const.GROUND_6, Const.GROUND_4 }[month - 1]).get();
@@ -332,7 +332,7 @@ public enum MiniStar implements Star {
 	/** The MIN i_ sta r_ resolv e2. */
 	MINI_STAR_RESOLVE2(Const.MINI_STAR_RESOLVE2, Const.MINI_STAR_RESOLVE) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(new String[] { Const.GROUND_8, Const.GROUND_8, Const.GROUND_10,
 					Const.GROUND_10, Const.GROUND_0, Const.GROUND_0, Const.GROUND_2, Const.GROUND_2, Const.GROUND_4,
 					Const.GROUND_4, Const.GROUND_6, Const.GROUND_6 }[month - 1]).get();

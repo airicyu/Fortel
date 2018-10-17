@@ -98,7 +98,7 @@ public enum MinorStar implements Star {
 	/** The minor star left support. */
 	MINOR_STAR_LEFT_SUPPORT(Const.MINOR_STAR_LEFT_SUPPORT, Luck.LUCK) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(Const.GROUND_4).get().shift(month - 1);
 		}
 	},
@@ -106,7 +106,7 @@ public enum MinorStar implements Star {
 	/** The minor star right support. */
 	MINOR_STAR_RIGHT_SUPPORT(Const.MINOR_STAR_RIGHT_SUPPORT, Luck.LUCK) {
 		public Ground getGround(Destiny destiny) {
-			int month = destiny.getConfig().getCheckedDoubleMonthValidMonth();
+			int month = destiny.getConfig().getDoubleMonthLogicalMonth();
 			return Ground.getByDisplayName(Const.GROUND_10).get().shift(-(month - 1));
 		}
 	},
