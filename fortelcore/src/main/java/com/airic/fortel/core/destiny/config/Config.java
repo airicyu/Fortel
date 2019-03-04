@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @author Eric Yu
  */
 @JsonAutoDetect(getterVisibility = Visibility.NONE, isGetterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE, creatorVisibility = Visibility.NONE, fieldVisibility = Visibility.ANY)
-public final class Config implements Cloneable, Serializable {
+public class Config implements Cloneable, Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 6615989785197922633L;
@@ -70,6 +70,62 @@ public final class Config implements Cloneable, Serializable {
 	/** The is double month. */
 	private boolean isDoubleMonth;
 
+	public Config() {
+	}
+	
+	/**
+	 * Instantiates a new config.
+	 *
+	 * @param configType
+	 *            the config type
+	 * @param sex
+	 *            the sex
+	 * @param bornYear
+	 *            the born year
+	 * @param bornMonth
+	 *            the born month
+	 * @param bornDay
+	 *            the born day
+	 * @param isDoubleMonth
+	 *            the is double month
+	 * @param bornTimeGround
+	 *            the born time ground
+	 */
+	public Config(ConfigType configType, Sex sex, int bornYear, int bornMonth, int bornDay, boolean isDoubleMonth,
+			Sky yearSky, Ground yearGround,
+			Sky monthSky, Ground monthGround,
+			Sky daySky, Ground dayGround,
+			GroundTime bornTimeGround) {
+		super();
+		this.configType = configType;
+		this.sex = sex;
+		this.bornYear = bornYear;
+		this.bornMonth = bornMonth;
+		this.bornDay = bornDay;
+		this.bornTimeGround = bornTimeGround;
+		this.isDoubleMonth = isDoubleMonth;
+		
+		this.yearSky = yearSky;
+		this.yearGround = yearGround;
+		this.monthSky = monthSky;
+		this.monthGround = monthGround;
+		this.daySky = daySky;
+		this.dayGround = dayGround;
+	}
+	
+	public Config(ConfigType configType, Sex sex, int bornYear, int bornMonth, int bornDay, boolean isDoubleMonth,
+			GroundTime bornTimeGround) {
+		super();
+		this.configType = configType;
+		this.sex = sex;
+		this.bornYear = bornYear;
+		setupYearSkyGround();
+		this.bornMonth = bornMonth;
+		this.bornDay = bornDay;
+		this.bornTimeGround = bornTimeGround;
+		this.isDoubleMonth = isDoubleMonth;
+	}
+	
 	/**
 	 * To short string.
 	 *
@@ -143,59 +199,6 @@ public final class Config implements Cloneable, Serializable {
 	public int getBasicDestinyType() {
 		Destiny destiny = new Destiny(this);
 		return MajorStar.MAJOR_STAR_EMPEROR.getGround(destiny).getIndex() + 1;
-	}
-
-	/**
-	 * Instantiates a new config.
-	 *
-	 * @param configType
-	 *            the config type
-	 * @param sex
-	 *            the sex
-	 * @param bornYear
-	 *            the born year
-	 * @param bornMonth
-	 *            the born month
-	 * @param bornDay
-	 *            the born day
-	 * @param isDoubleMonth
-	 *            the is double month
-	 * @param bornTimeGround
-	 *            the born time ground
-	 */
-	public Config(ConfigType configType, Sex sex, int bornYear, int bornMonth, int bornDay, boolean isDoubleMonth,
-			Sky yearSky, Ground yearGround,
-			Sky monthSky, Ground monthGround,
-			Sky daySky, Ground dayGround,
-			GroundTime bornTimeGround) {
-		super();
-		this.configType = configType;
-		this.sex = sex;
-		this.bornYear = bornYear;
-		this.bornMonth = bornMonth;
-		this.bornDay = bornDay;
-		this.bornTimeGround = bornTimeGround;
-		this.isDoubleMonth = isDoubleMonth;
-		
-		this.yearSky = yearSky;
-		this.yearGround = yearGround;
-		this.monthSky = monthSky;
-		this.monthGround = monthGround;
-		this.daySky = daySky;
-		this.dayGround = dayGround;
-	}
-	
-	public Config(ConfigType configType, Sex sex, int bornYear, int bornMonth, int bornDay, boolean isDoubleMonth,
-			GroundTime bornTimeGround) {
-		super();
-		this.configType = configType;
-		this.sex = sex;
-		this.bornYear = bornYear;
-		setupYearSkyGround();
-		this.bornMonth = bornMonth;
-		this.bornDay = bornDay;
-		this.bornTimeGround = bornTimeGround;
-		this.isDoubleMonth = isDoubleMonth;
 	}
 
 	/**
