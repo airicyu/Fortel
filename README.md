@@ -1,5 +1,5 @@
 # Fortel
-Java紫微斗數排盤Library 
+Java紫微斗數排盤Library (中州派)
 
 Author: Eric Yu
 
