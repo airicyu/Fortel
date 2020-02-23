@@ -3,7 +3,6 @@ package com.airic.fortel.core.model;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.WeakHashMap;
 
 import com.airic.fortel.core.model.Data.Direction;
 import com.airic.fortel.core.model.Data.Sex;
@@ -210,15 +209,9 @@ public enum MiniStar implements Star {
 		public Ground getGround(Destiny destiny) {
 			Sky yearSky = destiny.getConfig().getYearSky();
 			Ground yearGround = destiny.getConfig().getYearGround();
-			int offset = CommonUtil.mod(yearSky.getIndex() - yearGround.getIndex(), 12);
-
-			return new CommonUtil.MapWrapper<Integer, Ground>(new WeakHashMap<Integer, Ground>())
-					.put(0, Ground.getByDisplayName(Const.GROUND_10).get())
-					.put(10, Ground.getByDisplayName(Const.GROUND_8).get())
-					.put(8, Ground.getByDisplayName(Const.GROUND_6).get())
-					.put(6, Ground.getByDisplayName(Const.GROUND_4).get())
-					.put(4, Ground.getByDisplayName(Const.GROUND_2).get())
-					.put(2, Ground.getByDisplayName(Const.GROUND_0).get()).getMap().get(offset);
+			
+			int offset = CommonUtil.mod(yearSky.getIndex() - yearGround.getIndex(), 12)/2;
+			return Ground.getByIndex(10 - 2 * offset);
 		}
 	},
 	// 旬空2
@@ -227,15 +220,9 @@ public enum MiniStar implements Star {
 		public Ground getGround(Destiny destiny) {
 			Sky yearSky = destiny.getConfig().getYearSky();
 			Ground yearGround = destiny.getConfig().getYearGround();
-			int offset = CommonUtil.mod(yearSky.getIndex() - yearGround.getIndex(), 12);
 
-			return new CommonUtil.MapWrapper<Integer, Ground>(new WeakHashMap<Integer, Ground>())
-					.put(0, Ground.getByDisplayName(Const.GROUND_11).get())
-					.put(10, Ground.getByDisplayName(Const.GROUND_9).get())
-					.put(8, Ground.getByDisplayName(Const.GROUND_7).get())
-					.put(6, Ground.getByDisplayName(Const.GROUND_5).get())
-					.put(4, Ground.getByDisplayName(Const.GROUND_3).get())
-					.put(2, Ground.getByDisplayName(Const.GROUND_1).get()).getMap().get(offset);
+			int offset = CommonUtil.mod(yearSky.getIndex() - yearGround.getIndex(), 12)/2;
+			return Ground.getByIndex(10 - 2 * offset + 1);			
 		}
 	},
 	// 截空
