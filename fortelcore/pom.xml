@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <Component>fortelcore</Component>
-        <jackson.version>2.10.3</jackson.version>
+        <jackson.version>2.12.1</jackson.version>
         <jodatime.version>2.8.2</jodatime.version>
         <log4j.version>2.4</log4j.version>
         <org.apache.commons.version>3.4</org.apache.commons.version>
