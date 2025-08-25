@@ -14,7 +14,7 @@
         <jackson.version>2.13.4.2</jackson.version>
         <jodatime.version>2.8.2</jodatime.version>
         <log4j.version>2.4</log4j.version>
-        <org.apache.commons.version>3.4</org.apache.commons.version>
+        <org.apache.commons.version>3.18.0</org.apache.commons.version>
         <junit.version>4.12</junit.version>
         <junit.jupiter.version>5.0.0</junit.jupiter.version>
         <junit.vintage.version>${junit.version}.0</junit.vintage.version>
